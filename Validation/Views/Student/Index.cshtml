@@ -1,0 +1,48 @@
+﻿@model ServerValidation.Models.Student
+
+@{
+    ViewBag.Title = "Index";
+}
+ @if (ViewData.ModelState.IsValid)
+    {
+        if(@ViewBag.Name != null)
+        {
+            <b>
+                Name : @ViewBag.Name<br />
+                Email : @ViewBag.Email
+            </b>
+        }
+    }
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Student</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

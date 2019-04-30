@@ -1,0 +1,48 @@
+﻿@model ServerValidation.Models.User
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm()) { 
+    if (@ViewData.ModelState.IsValid)
+    {
+        if(@ViewBag.Name != null)
+        {
+            <b>
+                Name : @ViewBag.Name<br />
+                Email : @ViewBag.Email
+            </b>
+        }
+    }
+      
+    <fieldset>
+        <legend>User</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)  
+            @if(!ViewData.ModelState.IsValid) 
+            {        
+                <span class="field-validation-error">@ViewData.ModelState["Name"].Errors[0].ErrorMessage</span> 
+            }             
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email) 
+             @if (!ViewData.ModelState.IsValid) 
+            {        
+                 <span class="field-validation-error">@ViewData.ModelState["Email"].Errors[0].ErrorMessage</span> 
+            }          
+        </div>
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+
